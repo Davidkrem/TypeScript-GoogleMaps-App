@@ -1,9 +1,12 @@
 import axios from 'axios';
+import 'dotenv/config';
 
 const form = document.querySelector('form')!;
 const addressInput = document.getElementById('address')! as HTMLInputElement;
-//Will Add my google api key in ENV file
-const GOOGLE_API_KEY;
+
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
+declare var google: any;
 
 //type alias
 type GoogleGeocodingResponse = {
@@ -29,7 +32,7 @@ function searchAddressHandler(e: Event) {
       const map = new google.maps.Map(document.getElementById('map'), {
         center: coordinates,
         zoom: 8,
-      }); 
+      });
       new google.maps.Marker({
         position: coordinates,
         map: map,
